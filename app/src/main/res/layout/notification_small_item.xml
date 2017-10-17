@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal">
+
+
+    <ImageView
+        android:layout_margin="@dimen/notif_small_margin"
+        android:id="@+id/imageView"
+        android:layout_width="@dimen/notif_small_icon_size"
+        android:layout_height="@dimen/notif_small_icon_size"
+        android:src="@drawable/ic_main_large" />
+
+    <LinearLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_toRightOf="@+id/imageView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:id="@+id/llName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/notif_small_margin"
+            android:layout_marginLeft="@dimen/notif_margin"
+            android:layout_marginRight="@dimen/notif_margin"
+            android:background="@drawable/widget_selector"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/tvType"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ellipsize="end"
+                android:gravity="center"
+                android:maxLines="1"
+                style="@style/NotificationText"
+                android:singleLine="true"
+                android:text="Наименование"
+                android:textSize="@dimen/notif_small_text_size"
+                android:visibility="gone"></TextView>
+
+            <TextView
+                android:id="@+id/tvName"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/notif_small_margin2"
+                android:layout_marginBottom="@dimen/notif_small_margin2"
+                android:ellipsize="end"
+                android:gravity="center"
+                android:maxLines="1"
+                style="@style/NotificationText"
+                android:singleLine="true"
+                android:text="Наименование"
+                android:textSize="@dimen/notif_small_text_size">
+            </TextView>
+
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:layout_margin="@dimen/notif_small_margin"
+            android:orientation="horizontal">
+
+            <LinearLayout
+                android:id="@+id/llEmptyLeft"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="horizontal">
+            </LinearLayout>
+            <ProgressBar
+                android:id="@+id/ivImageLoad"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/notif_action_icon_size"
+                android:layout_marginLeft="@dimen/notif_small_margin2"
+                android:layout_marginRight="@dimen/notif_small_margin2"
+                android:indeterminateDrawable="@anim/widget_load"
+                android:background="@drawable/widget_selector"
+                android:layout_weight="1">
+            </ProgressBar>
+            <ImageView
+                android:id="@+id/ivImagePrev"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/notif_action_icon_size"
+                android:layout_weight="1"
+                android:background="@drawable/widget_selector"
+                android:src="@drawable/prev">
+            </ImageView>
+            <ImageView
+                android:id="@+id/ivImagePause"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/notif_action_icon_size"
+                android:layout_weight="1"
+                android:background="@drawable/widget_selector"
+                android:src="@drawable/pause">
+            </ImageView>
+            <ImageView
+                android:id="@+id/ivImage"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/notif_action_icon_size"
+                android:layout_weight="1"
+                android:background="@drawable/widget_selector"
+                android:src="@drawable/play">
+            </ImageView>
+            <ImageView
+                android:id="@+id/ivImageNext"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/notif_action_icon_size"
+                android:layout_weight="1"
+                android:background="@drawable/widget_selector"
+                android:src="@drawable/next">
+            </ImageView>
+            <LinearLayout
+                android:id="@+id/llEmptyRight"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="horizontal">
+            </LinearLayout>
+        </LinearLayout>
+    </LinearLayout>
+</RelativeLayout>

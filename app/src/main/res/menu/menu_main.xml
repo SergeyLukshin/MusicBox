@@ -1,0 +1,53 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context="ru.adoon.mymusic.Activities.MainActivity">
+    <item
+        android:id="@+id/action_add_radio_select"
+        android:orderInCategory="100"
+        android:title="@string/action_add_radio_select"
+        app:showAsAction="never" />
+    <item
+        android:id="@+id/action_add_radio"
+        android:orderInCategory="100"
+        android:title="@string/action_add_radio"
+        app:showAsAction="never" />
+    <item
+        android:id="@+id/action_add_folder"
+        android:orderInCategory="100"
+        android:title="@string/action_add_folder"
+        app:showAsAction="never" />
+    <item
+        android:id="@+id/action_add_playlist"
+        android:orderInCategory="100"
+        android:title="@string/action_add_playlist"
+        app:showAsAction="never" />
+    <item
+        android:id="@+id/action_edit"
+        android:orderInCategory="100"
+        android:title="@string/action_edit"
+        app:showAsAction="never" />
+    <item
+        android:id="@+id/action_delete"
+        android:orderInCategory="100"
+        android:title="@string/action_delete"
+        app:showAsAction="never" />
+    <item
+        android:icon="@drawable/bluetooth_on_large"
+        android:id="@+id/action_bluetooth"
+        android:orderInCategory="100"
+        android:title="@string/action_on_off_bluetooth"
+        app:showAsAction="ifRoom" />
+    <item
+        android:icon="@drawable/sound_on_large"
+        android:id="@+id/action_sound"
+        android:orderInCategory="100"
+        android:title="@string/action_on_off_sound"
+        app:showAsAction="ifRoom" />
+    <item
+        android:icon="@drawable/eq_large"
+        android:id="@+id/action_eq"
+        android:orderInCategory="100"
+        android:title="@string/action_equalizer"
+        app:showAsAction="ifRoom" />
+</menu>

@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="ru.adoon.mymusic">
+
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
+    <uses-permission android:name="android.permission.VIBRATE"/>
+    <uses-permission android:name="android.permission.BLUETOOTH" />
+    <uses-permission android:name="android.permission.BLUETOOTH_ADMIN" />
+
+    <application
+        android:allowBackup="true"
+        android:icon="@drawable/ic_main"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme">
+        <activity
+            android:name=".Activities.MainActivity"
+            android:label="@string/app_name"
+            android:theme="@style/AppTheme.NoActionBar"
+            android:screenOrientation="portrait"
+            android:configChanges="orientation|screenSize">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+                <action android:name="ru.adoon.mymusic.widget_update" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".Activities.ConfigActivity"
+            android:label="@string/app_config_name">
+            <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_CONFIGURE" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".Activities.ActivityPlayFile"
+            android:label="ActivityFileSelect"
+            android:theme="@style/Theme.AppCompat.Translucent"
+            >
+        </activity>
+        <activity
+            android:name=".Activities.ActivityEqualizer"
+            android:label="ActivityEqualizer"
+            android:theme="@style/Theme.AppCompat.Translucent"
+            >
+        </activity>
+        <receiver
+            android:name=".Widgets.Widget">
+            <intent-filter>
+                <action
+                    android:name="android.appwidget.action.APPWIDGET_UPDATE">
+                </action>
+                <action android:name="ru.adoon.mymusic.widget_update" />
+            </intent-filter>
+            <meta-data
+                android:name="android.appwidget.provider"
+                android:resource="@xml/widget_metadata"
+                android:updatePeriodMillis="0">
+            </meta-data>
+        </receiver>
+        <receiver
+            android:name=".Widgets.WidgetVertical">
+            <intent-filter>
+                <action
+                    android:name="android.appwidget.action.APPWIDGET_UPDATE">
+                </action>
+                <action
+                    android:name="android.appwidget.action.APPWIDGET_UPDATE_OPTIONS">
+                </action>
+                <action android:name="ru.adoon.mymusic.widget_update" />
+            </intent-filter>
+            <meta-data
+                android:name="android.appwidget.provider"
+                android:resource="@xml/widget_vertical_metadata"
+                android:updatePeriodMillis="0">
+            </meta-data>
+        </receiver>
+        <receiver android:name=".Tools.MusicIntentReceiver" >
+            <intent-filter>
+                <action android:name="android.media.AUDIO_BECOMING_NOISY" />
+            </intent-filter>
+            <intent-filter>
+                <action android:name="android.intent.action.MEDIA_BUTTON" />
+            </intent-filter>
+        </receiver>
+        <service android:name=".Services.MediaService">
+        </service>
+    </application>
+
+</manifest>

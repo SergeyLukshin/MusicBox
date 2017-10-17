@@ -1,0 +1,356 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@xml/roundcorner">
+
+    <include
+        android:id="@+id/llTop"
+        layout="@layout/ltop"
+        android:visibility="gone" />
+
+    <include
+        android:id="@+id/llmain"
+        layout="@layout/lwait"
+        android:visibility="visible" />
+
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:id="@+id/llmain2"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginBottom="3dp"
+        android:layout_marginLeft="3dp"
+        android:layout_marginRight="3dp"
+        android:orientation="vertical"
+        android:visibility="gone">
+
+        <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+            android:id="@+id/ll1"
+            style="@style/l_v_item">
+
+            <RelativeLayout
+                android:id="@+id/ll_tv1"
+                style="@style/lltv_v_item"
+                android:layout_toLeftOf="@+id/ll_img1">
+
+                <ImageView
+                    android:id="@+id/ivImageIcon1"
+                    android:layout_width="36dp"
+                    android:layout_height="36dp"
+                    android:layout_marginRight="5dp"
+                    android:src="@drawable/prev"></ImageView>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_toRightOf="@id/ivImageIcon1"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/tvMusic1"
+                        style="@style/tv_v_item"></TextView>
+
+                    <TextView
+                        android:id="@+id/tvMusic1_"
+                        style="@style/tv_v_item2"></TextView>
+                </LinearLayout>
+            </RelativeLayout>
+
+            <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:id="@+id/ll_img1"
+                style="@style/llimg_v_item">
+
+                <ProgressBar
+                    android:id="@+id/ivMusicImageLoad1_"
+                    style="@style/pb_item"></ProgressBar>
+
+                <ImageView
+                    android:id="@+id/ivMusicImage1Prev"
+                    style="@style/iv_item"
+                    android:src="@drawable/prev"></ImageView>
+
+                <ImageView
+                    android:id="@+id/ivMusicImage1Pause"
+                    style="@style/iv_item"
+                    android:src="@drawable/pause"></ImageView>
+
+                <ImageView
+                    android:id="@+id/ivMusicImage1"
+                    style="@style/iv_item"
+                    android:src="@drawable/play"></ImageView>
+
+                <ImageView
+                    android:id="@+id/ivMusicImage1Next"
+                    style="@style/iv_item"
+                    android:src="@drawable/next"></ImageView>
+
+            </LinearLayout>
+
+        </RelativeLayout>
+
+        <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+            android:id="@+id/ll2"
+            style="@style/l_v_item">
+
+            <RelativeLayout
+                android:id="@+id/ll_tv2"
+                style="@style/lltv_v_item"
+                android:layout_toLeftOf="@+id/ll_img2">
+
+                <ImageView
+                    android:id="@+id/ivImageIcon2"
+                    android:layout_width="36dp"
+                    android:layout_height="36dp"
+                    android:layout_marginRight="5dp"
+                    android:src="@drawable/prev"></ImageView>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_toRightOf="@id/ivImageIcon2"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/tvMusic2"
+                        style="@style/tv_v_item"></TextView>
+
+                    <TextView
+                        android:id="@+id/tvMusic2_"
+                        style="@style/tv_v_item2"></TextView>
+                </LinearLayout>
+            </RelativeLayout>
+
+            <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:id="@+id/ll_img2"
+                style="@style/llimg_v_item">
+
+                <ProgressBar
+                    android:id="@+id/ivMusicImageLoad2_"
+                    style="@style/pb_item"></ProgressBar>
+
+                <ImageView
+                    android:id="@+id/ivMusicImage2Prev"
+                    style="@style/iv_item"
+                    android:src="@drawable/prev"></ImageView>
+
+                <ImageView
+                    android:id="@+id/ivMusicImage2Pause"
+                    style="@style/iv_item"
+                    android:src="@drawable/pause"></ImageView>
+
+                <ImageView
+                    android:id="@+id/ivMusicImage2"
+                    style="@style/iv_item"
+                    android:src="@drawable/play"></ImageView>
+
+                <ImageView
+                    android:id="@+id/ivMusicImage2Next"
+                    style="@style/iv_item"
+                    android:src="@drawable/next"></ImageView>
+
+            </LinearLayout>
+
+        </RelativeLayout>
+
+        <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+            android:id="@+id/ll3"
+            style="@style/l_v_item">
+
+            <RelativeLayout
+                android:id="@+id/ll_tv3"
+                style="@style/lltv_v_item"
+                android:layout_toLeftOf="@+id/ll_img3">
+
+                <ImageView
+                    android:id="@+id/ivImageIcon3"
+                    android:layout_width="36dp"
+                    android:layout_height="36dp"
+                    android:layout_marginRight="5dp"
+                    android:src="@drawable/prev"></ImageView>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_toRightOf="@id/ivImageIcon3"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/tvMusic3"
+                        style="@style/tv_v_item"></TextView>
+
+                    <TextView
+                        android:id="@+id/tvMusic3_"
+                        style="@style/tv_v_item2"></TextView>
+                </LinearLayout>
+            </RelativeLayout>
+
+            <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:id="@+id/ll_img3"
+                style="@style/llimg_v_item">
+
+                <ProgressBar
+                    android:id="@+id/ivMusicImageLoad3_"
+                    style="@style/pb_item"></ProgressBar>
+
+                <ImageView
+                    android:id="@+id/ivMusicImage3Prev"
+                    style="@style/iv_item"
+                    android:src="@drawable/prev"></ImageView>
+
+                <ImageView
+                    android:id="@+id/ivMusicImage3Pause"
+                    style="@style/iv_item"
+                    android:src="@drawable/pause"></ImageView>
+
+                <ImageView
+                    android:id="@+id/ivMusicImage3"
+                    style="@style/iv_item"
+                    android:src="@drawable/play"></ImageView>
+
+                <ImageView
+                    android:id="@+id/ivMusicImage3Next"
+                    style="@style/iv_item"
+                    android:src="@drawable/next"></ImageView>
+
+            </LinearLayout>
+
+        </RelativeLayout>
+
+        <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+            android:id="@+id/ll4"
+            style="@style/l_v_item">
+
+            <RelativeLayout
+                android:id="@+id/ll_tv4"
+                style="@style/lltv_v_item"
+                android:layout_toLeftOf="@+id/ll_img4">
+
+                <ImageView
+                    android:id="@+id/ivImageIcon4"
+                    android:layout_width="36dp"
+                    android:layout_height="36dp"
+                    android:layout_marginRight="5dp"
+                    android:src="@drawable/prev"></ImageView>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_toRightOf="@id/ivImageIcon4"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/tvMusic4"
+                        style="@style/tv_v_item"></TextView>
+
+                    <TextView
+                        android:id="@+id/tvMusic4_"
+                        style="@style/tv_v_item2"></TextView>
+                </LinearLayout>
+            </RelativeLayout>
+
+            <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:id="@+id/ll_img4"
+                style="@style/llimg_v_item">
+
+                <ProgressBar
+                    android:id="@+id/ivMusicImageLoad4_"
+                    style="@style/pb_item"></ProgressBar>
+
+                <ImageView
+                    android:id="@+id/ivMusicImage4Prev"
+                    style="@style/iv_item"
+                    android:src="@drawable/prev"></ImageView>
+
+                <ImageView
+                    android:id="@+id/ivMusicImage4Pause"
+                    style="@style/iv_item"
+                    android:src="@drawable/pause"></ImageView>
+
+                <ImageView
+                    android:id="@+id/ivMusicImage4"
+                    style="@style/iv_item"
+                    android:src="@drawable/play"></ImageView>
+
+                <ImageView
+                    android:id="@+id/ivMusicImage4Next"
+                    style="@style/iv_item"
+                    android:src="@drawable/next"></ImageView>
+
+            </LinearLayout>
+
+        </RelativeLayout>
+
+        <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+            android:id="@+id/ll5"
+            style="@style/l_v_item">
+
+            <RelativeLayout
+                android:id="@+id/ll_tv5"
+                style="@style/lltv_v_item"
+                android:layout_toLeftOf="@+id/ll_img5">
+
+                <ImageView
+                    android:id="@+id/ivImageIcon5"
+                    android:layout_width="36dp"
+                    android:layout_height="36dp"
+                    android:layout_marginRight="5dp"
+                    android:src="@drawable/prev"></ImageView>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_toRightOf="@id/ivImageIcon5"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/tvMusic5"
+                        style="@style/tv_v_item"></TextView>
+
+                    <TextView
+                        android:id="@+id/tvMusic5_"
+                        style="@style/tv_v_item2"></TextView>
+                </LinearLayout>
+            </RelativeLayout>
+
+            <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:id="@+id/ll_img5"
+                style="@style/llimg_v_item">
+
+                <ProgressBar
+                    android:id="@+id/ivMusicImageLoad5_"
+                    style="@style/pb_item"></ProgressBar>
+
+                <ImageView
+                    android:id="@+id/ivMusicImage5Prev"
+                    style="@style/iv_item"
+                    android:src="@drawable/prev"></ImageView>
+
+                <ImageView
+                    android:id="@+id/ivMusicImage5Pause"
+                    style="@style/iv_item"
+                    android:src="@drawable/pause"></ImageView>
+
+                <ImageView
+                    android:id="@+id/ivMusicImage5"
+                    style="@style/iv_item"
+                    android:src="@drawable/play"></ImageView>
+
+                <ImageView
+                    android:id="@+id/ivMusicImage5Next"
+                    style="@style/iv_item"
+                    android:src="@drawable/next"></ImageView>
+
+            </LinearLayout>
+
+        </RelativeLayout>
+
+    </LinearLayout>
+</LinearLayout>

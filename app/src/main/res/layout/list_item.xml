@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:padding="10dp">
+
+
+    <RelativeLayout
+        android:id="@+id/linearLayout1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="5dp"
+        android:layout_weight="1"
+        android:orientation="horizontal">
+
+        <RelativeLayout
+            android:id="@+id/linearLayout3"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_centerVertical="true"
+            android:layout_marginTop="5dp"
+            android:layout_toLeftOf="@+id/linearLayout2"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:id="@+id/ivImageIcon"
+                android:layout_width="36dp"
+                android:layout_height="36dp"
+                android:layout_marginRight="5dp"
+                android:src="@drawable/prev"></ImageView>
+
+            <TextView
+                android:id="@+id/tvName"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Наименование"
+                android:layout_toRightOf="@id/ivImageIcon"
+                android:layout_centerVertical="true"
+                android:textColor="@color/colorBlack"
+                android:textSize="20sp"></TextView>
+        </RelativeLayout>
+
+        <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+            android:id="@+id/linearLayout2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:id="@+id/ivImagePrev"
+                android:layout_width="36dp"
+                android:layout_height="36dp"
+                android:layout_marginLeft="5dp"
+                android:background="@drawable/widget_dark_selector"
+                android:src="@drawable/prev"></ImageView>
+
+            <ImageView
+                android:id="@+id/ivImagePause"
+                android:layout_width="36dp"
+                android:layout_height="36dp"
+                android:layout_marginLeft="5dp"
+                android:background="@drawable/widget_dark_selector"
+                android:src="@drawable/pause"></ImageView>
+
+            <ImageView
+                android:id="@+id/ivImage"
+                android:layout_width="36dp"
+                android:layout_height="36dp"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="5dp"
+                android:background="@drawable/widget_dark_selector"
+                android:src="@drawable/play"></ImageView>
+
+            <ImageView
+                android:id="@+id/ivImageNext"
+                android:layout_width="36dp"
+                android:layout_height="36dp"
+                android:background="@drawable/widget_dark_selector"
+                android:src="@drawable/next"></ImageView>
+        </LinearLayout>
+    </RelativeLayout>
+
+    <TextView
+        android:id="@+id/tvType"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="left"
+        android:layout_marginLeft="5dp"
+        android:layout_weight="1"
+        android:text="Тип"
+        android:textSize="14sp"></TextView>
+</LinearLayout>

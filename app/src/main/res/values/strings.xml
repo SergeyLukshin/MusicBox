@@ -1,0 +1,50 @@
+<resources>
+    <string name="app_name">MediaBox</string>
+    <string name="app_config_name">Настройки виджета</string>
+    <string name="action_add_radio_select">Добавить радио с сайта 101.ru</string>
+    <string name="action_add_radio">Добавить радио</string>
+    <string name="action_add_folder">Добавить папку</string>
+    <string name="action_add_playlist">Добавить плейлист</string>
+    <string name="action_edit">Изменить</string>
+    <string name="action_delete">Удалить</string>
+    <string name="action_on_off_sound">Вкл/откл звук</string>
+    <string name="action_on_off_bluetooth">Вкл/откл bluetooth</string>
+    <string name="action_equalizer">Эквалайзер</string>
+    <string name="alert_record_delete">Удалить запись?</string>
+    <string name="alert_playlist_record_delete">Удалить выбранные файлы из плейлиста?</string>
+    <string name="alert_record_delete_title">Удаление</string>
+    <string name="yes">Да</string>
+    <string name="no">Нет</string>
+    <string name="save">Сохранить</string>
+    <string name="cancel">Отменить</string>
+    <string name="close">Закрыть</string>
+    <string name="select">Выбрать</string>
+    <string name="stop">Оcтановить</string>
+
+    <string name="directory_selected_label">Выбранная папка:</string>
+    <string name="choose_directory">Выберите папку</string>
+    <string name="none">Пусто</string>
+    <string name="btn_choose">Выбрать</string>
+
+    <string name="widget_load">загрузка ...</string>
+    <string name="action_bluetooth">Bluetooth</string>
+    <string name="action_sound">Звук</string>
+    <string name="metadata_error_message">Metadata could not be retrieved</string>
+
+    <string-array name="widget_type_list">
+        <item>горизонтальный</item>
+        <item>вертикальный</item>
+    </string-array>
+
+    <string-array name="menu_playlist">
+        <item>Удалить</item>
+    </string-array>
+
+    <string-array name="menu_select_file">
+        <item>Добавить в плейлист</item>
+    </string-array>
+
+    <string-array name="menu_select_dir">
+        <item>Выбрать</item>
+    </string-array>
+</resources>
