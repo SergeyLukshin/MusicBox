@@ -1,7 +1,8 @@
 <resources>
     <string name="app_name">MediaBox</string>
     <string name="app_config_name">Настройки виджета</string>
-    <string name="action_add_radio_select">Добавить радио с сайта 101.ru</string>
+    <string name="action_add_radio_select">Поиск радио на сайте 101.ru</string>
+    <string name="action_add_folder_select">Поиск папок с медиа-файлами</string>
     <string name="action_add_radio">Добавить радио</string>
     <string name="action_add_folder">Добавить папку</string>
     <string name="action_add_playlist">Добавить плейлист</string>

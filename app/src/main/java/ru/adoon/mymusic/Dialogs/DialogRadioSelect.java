@@ -14,6 +14,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.ListView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -43,7 +44,7 @@ import ru.adoon.mymusic.Classes.RadioItem;
  * Created by Лукшин on 29.06.2017.
  */
 
-public class DialogRadioSelect extends DialogFragment {
+public class DialogRadioSelect extends DialogFragment implements View.OnClickListener {
     ListView lvData;
     RadioItemAdapter miAdapter;
     ArrayList<RadioItem> objects = null;
@@ -52,7 +53,9 @@ public class DialogRadioSelect extends DialogFragment {
     LinearLayout llLoad = null, llMain = null;
     RadioInfo task;
     EditText inputSearch;
-    TextView tvFindInfo;
+    TextView tvFindInfo, tvStop;
+    ProgressBar pb;
+    boolean mStop = false;
 
     public class IDComparator
             implements Comparator
@@ -72,6 +75,8 @@ public class DialogRadioSelect extends DialogFragment {
             try {
                 int err = 0;
                 for (int i = 1; i < 1000; i++) {
+
+                    if (mStop) return null;
                     // http://101.ru/api/channel/getServers/200/channel/MP3/?dataFormat=json
                     // http://101.ru/foot-radio-search/search/moscow
                     URL url = new URL("http://101.ru/api/channel/getServers/" + String.valueOf(i) + "/channel/MP3/128/?dataFormat=json");
@@ -155,10 +160,17 @@ public class DialogRadioSelect extends DialogFragment {
             tvFindInfo.setText("Найдено " + String.valueOf(progress[0]) + " станций");
         }
     }
+
+    public void onClick(View v) {
+        if (v.getId() == R.id.tvStop || v.getId() == R.id.progressBar) {
+            mStop = true;
+        }
+    }
+
     public Dialog onCreateDialog(Bundle savedInstanceState) {
 
         AlertDialog.Builder adb = new AlertDialog.Builder(getActivity());
-        adb.setTitle("Добавить радио с сайта 101.ru");
+        adb.setTitle(R.string.action_add_radio_select);
         // создаем view из dialog.xml
         LinearLayout view = (LinearLayout) getActivity().getLayoutInflater()
                 .inflate(R.layout.dialog_radio_select, null);
@@ -174,6 +186,13 @@ public class DialogRadioSelect extends DialogFragment {
         objects = new ArrayList<RadioItem>();
 
         tvFindInfo = (TextView) view.findViewById(R.id.tvFindInfo);
+
+        tvStop = (TextView) view.findViewById(R.id.tvStop);
+        tvStop.setOnClickListener(this);
+
+        pb = (ProgressBar)view.findViewById(R.id.progressBar);
+        pb.setOnClickListener(this);
+
         inputSearch = (EditText) view.findViewById(R.id.inputSearch);
         inputSearch.addTextChangedListener(new TextWatcher() {
 
@@ -205,46 +224,6 @@ public class DialogRadioSelect extends DialogFragment {
         task = new RadioInfo();
         task.execute();
 
-        /*miAdapter.objects.add(new RadioItem("Like FM", "http://ic3.101.ru:8000/v12_1"));
-        miAdapter.objects.add(new RadioItem("NRJ", "http://ic3.101.ru:8000/v1_1?setst=-1"));
-        miAdapter.objects.add(new RadioItem("Юмор FM", "http://ic3.101.ru:8000/s11"));
-        miAdapter.objects.add(new RadioItem("Мегаполис", "http://stream04.media.rambler.ru/megapolis128.mp3"));
-        miAdapter.objects.add(new RadioItem("Страна FM", "http://icecast.stranafm.cdnvideo.ru/stranafm"));
-        miAdapter.objects.add(new RadioItem("Авторадио", "http://ic3.101.ru:8000/s1"));
-        miAdapter.objects.add(new RadioItem("Релакс FM", "http://ic3.101.ru:8000/s40"));
-        miAdapter.objects.add(new RadioItem("Эхо Москвы", "http://81.19.85.197/echo.mp3"));
-        miAdapter.objects.add(new RadioItem("Культура", "http://icecast.vgtrk.cdnvideo.ru/kulturafm"));
-        miAdapter.objects.add(new RadioItem("Москва FM", "http://icecast.vgtrk.cdnvideo.ru:8000/moscowfm128"));
-        miAdapter.objects.add(new RadioItem("Спорт FM", "http://sportfm128.streamr.ru"));
-        miAdapter.objects.add(new RadioItem("Восток FM", "http://vostokfm.hostingradio.ru:8028/vostokfm128.mp3"));
-        miAdapter.objects.add(new RadioItem("Коммерсантъ FM", "http://kommersant77.hostingradio.ru:8016/kommersant128.mp3"));
-        miAdapter.objects.add(new RadioItem("Весна FM", "http://91.203.176.214:8000/vesnafm"));
-        miAdapter.objects.add(new RadioItem("Говорит Москва", "http://media.govoritmoskva.ru:8000/rufm_m.mp3"));
-        miAdapter.objects.add(new RadioItem("Rock FM", "http://nashe1.hostingradio.ru/rock-256"));
-        miAdapter.objects.add(new RadioItem("Дорожное радио", "http://dorognoe.hostingradio.ru:8000/radio"));
-        miAdapter.objects.add(new RadioItem("Такси FM", "http://95.161.228.74:8000/13_taxi_256"));
-        miAdapter.objects.add(new RadioItem("Детское радио", "http://ic3.101.ru:8000/s50"));
-        miAdapter.objects.add(new RadioItem("Вести FM", "http://icecast.vgtrk.cdnvideo.ru/vestifm"));
-        miAdapter.objects.add(new RadioItem("Chocolate Radio", "http://choco.hostingradio.ru:10010/fm"));
-        miAdapter.objects.add(new RadioItem("Новое радио", "http://newradio.fmtuner.ru/newradio3"));
-        miAdapter.objects.add(new RadioItem("Романтика", "http://ic3.101.ru:8000/s30"));
-        miAdapter.objects.add(new RadioItem("Радио Русский хит", "http://s9.imgradio.pro/RusHit48"));
-        miAdapter.objects.add(new RadioItem("Best FM", "http://nashe1.hostingradio.ru/best-256"));
-        miAdapter.objects.add(new RadioItem("Comedy Radio", "http://ic3.101.ru:8000/s60"));
-        miAdapter.objects.add(new RadioItem("Шансон", "http://chanson.hostingradio.ru:8041/chanson256.mp3"));
-        miAdapter.objects.add(new RadioItem("Маяк", "http://icecast.vgtrk.cdnvideo.ru/mayakfm"));
-        miAdapter.objects.add(new RadioItem("Радио 7 на семи холмах", "http://radio7server.streamr.ru:8040/radio7256.mp3"));
-        miAdapter.objects.add(new RadioItem("Книга", "http://bookradio.hostingradio.ru:8069/fm"));
-        miAdapter.objects.add(new RadioItem("Capital FM", "http://icecast.vgtrk.cdnvideo.ru/capitalfmmp3"));
-        miAdapter.objects.add(new RadioItem("Европа плюс", "http://ep256.streamr.ru"));
-        miAdapter.objects.add(new RadioItem("Love Радио", "http://stream2.n340.com:80/12_love_24_reg_44?type=.aac&UID=18A22C115E21FCCCFBDDFA57E14E8333"));
-        miAdapter.objects.add(new RadioItem("Милицейская волна", "http://radio.mvd.ru:8000/mv128.mp3"));
-        miAdapter.objects.add(new RadioItem("Радио Рекорд", "http://air2.radiorecord.ru:805/rr_320"));
-        miAdapter.objects.add(new RadioItem("Радио России", "http://icecast.vgtrk.cdnvideo.ru/rrzonam"));
-        miAdapter.objects.add(new RadioItem("Радио Мир", "http://icecast.mirtv.cdnvideo.ru:8000/radio_mir128"));
-        miAdapter.objects.add(new RadioItem("Радио Ultra", "http://nashe1.hostingradio.ru/ultra-256"));
-        miAdapter.objects.add(new RadioItem("Kiss FM", "http://online-kissfm.tavrmedia.ua:80/KissFM"));*/
-
         lvData = (ListView) view.findViewById(R.id.lvRadio);
         lvData.setAdapter(miAdapter);
         //lvData.setSelector(R.drawable.list_selector);
@@ -273,16 +252,24 @@ public class DialogRadioSelect extends DialogFragment {
 
     public void colorAlertDialogTitle(AlertDialog dlg) {
         int color = dlg.getContext().getResources().getColor(R.color.colorPrimary);
-        int dividerId = dlg.getContext().getResources().getIdentifier("android:id/titleDivider", null, null);
-        if (dividerId != 0) {
-            View divider = dlg.findViewById(dividerId);
-            divider.setBackgroundColor(color);
+        try {
+            int dividerId = dlg.getContext().getResources().getIdentifier("android:id/titleDivider", null, null);
+            if (dividerId != 0) {
+                View divider = dlg.findViewById(dividerId);
+                divider.setBackgroundColor(color);
+            }
+        }
+        catch (Exception ex) {
         }
 
-        int textViewId = dlg.getContext().getResources().getIdentifier("android:id/alertTitle", null, null);
-        if (textViewId != 0) {
-            TextView tv = (TextView) dlg.findViewById(textViewId);
-            tv.setTextColor(color);
+        try {
+            int textViewId = dlg.getContext().getResources().getIdentifier("android:id/alertTitle", null, null);
+            if (textViewId != 0) {
+                TextView tv = (TextView) dlg.findViewById(textViewId);
+                tv.setTextColor(color);
+            }
+        }
+        catch (Exception ex) {
         }
     }
 

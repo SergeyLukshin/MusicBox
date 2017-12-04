@@ -8,6 +8,11 @@
         android:title="@string/action_add_radio_select"
         app:showAsAction="never" />
     <item
+        android:id="@+id/action_add_folder_select"
+        android:orderInCategory="100"
+        android:title="@string/action_add_folder_select"
+        app:showAsAction="never" />
+    <item
         android:id="@+id/action_add_radio"
         android:orderInCategory="100"
         android:title="@string/action_add_radio"

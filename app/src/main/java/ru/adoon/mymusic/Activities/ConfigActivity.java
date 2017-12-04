@@ -285,10 +285,12 @@ public class ConfigActivity extends AppCompatActivity {
 
         String strIDs = "";
 
-        for (String str_id : miAdapter.selectedItems) {
-            int id = Integer.valueOf(str_id);
-            if (MediaService.musicBox.getMusicItemByID(id) != null)
-                strIDs += str_id + ",";
+        if (miAdapter.selectedItems != null) {
+            for (String str_id : miAdapter.selectedItems) {
+                int id = Integer.valueOf(str_id);
+                if (MediaService.musicBox.getMusicItemByID(id) != null)
+                    strIDs += str_id + ",";
+            }
         }
 
         editor.putString(WIDGET_ITEMS + widgetID, strIDs);

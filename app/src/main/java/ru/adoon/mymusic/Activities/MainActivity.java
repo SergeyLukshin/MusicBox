@@ -1,13 +1,19 @@
 package ru.adoon.mymusic.Activities;
 
+import android.Manifest;
 import android.app.AlertDialog;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.content.pm.PackageManager;
 import android.content.res.Configuration;
+import android.os.Build;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
+import android.support.v4.app.ActivityCompat;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.ContextMenu;
@@ -21,6 +27,7 @@ import android.widget.Toast;
 import ru.adoon.mymusic.Consts.Const;
 import ru.adoon.mymusic.Dialogs.DialogEqualizer;
 import ru.adoon.mymusic.Dialogs.DialogFolder;
+import ru.adoon.mymusic.Dialogs.DialogFolderSelect;
 import ru.adoon.mymusic.Dialogs.DialogPlayFile;
 import ru.adoon.mymusic.Dialogs.DialogPlaylist;
 import ru.adoon.mymusic.Dialogs.DialogRadio;
@@ -82,12 +89,53 @@ public class MainActivity extends AppCompatActivity  {
         }
     }
 
+    public static final int NUMBER_OF_REQUEST = 23401;
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        switch (requestCode) {
+            case NUMBER_OF_REQUEST: {
+                if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                    Toast.makeText(MainActivity.this, "Доступ к памяти разрешен.", Toast.LENGTH_SHORT).show();
+                } else {
+                    Toast.makeText(MainActivity.this, "Доступ к памяти запрещен.", Toast.LENGTH_SHORT).show();
+                }
+                return;
+            }
+        }
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            int canRead = ContextCompat.checkSelfPermission(this, Manifest.permission.READ_EXTERNAL_STORAGE);
+            int canWrite = ContextCompat.checkSelfPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE);
+
+            if (canRead != PackageManager.PERMISSION_GRANTED || canWrite != PackageManager.PERMISSION_GRANTED) {
+
+                //Нужно ли нам показывать объяснения , зачем нам нужно это разрешение
+                /*if (ActivityCompat.shouldShowRequestPermissionRationale(this, Manifest.permission.WRITE_EXTERNAL_STORAGE)) {
+                    //Toast.makeText(MainActivity.this, "Доступ к памяти необходим для воспроизведения треков.", Toast.LENGTH_LONG).show();
+                } else {*/
+                    //просим разрешение
+                    requestPermissions(new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE,
+                            Manifest.permission.READ_EXTERNAL_STORAGE}, NUMBER_OF_REQUEST);
+                //}
+
+                /*if (ActivityCompat.shouldShowRequestPermissionRationale(this, Manifest.permission.READ_EXTERNAL_STORAGE)) {
+                    //Toast.makeText(MainActivity.this, "Доступ к памяти необходим для воспроизведения треков.", Toast.LENGTH_LONG).show();
+                } else {*/
+                    //просим разрешение
+                //}
+            } else {
+                //ваш код
+            }
+        }
 
         // открываем подключение к БД
         if (MediaService.musicBox == null)
@@ -185,6 +233,11 @@ public class MainActivity extends AppCompatActivity  {
 
         IntentFilter intFilt = new IntentFilter(Const.FORCE_WIDGET_UPDATE);
         registerReceiver(br, intFilt);
+
+        if (miAdapter.getCount() == 0) {
+            DialogFolderSelect dlg = new DialogFolderSelect();
+            dlg.show(getFragmentManager(), "DialogFolderSelect");
+        }
     }
 
     @Override
@@ -336,6 +389,14 @@ public class MainActivity extends AppCompatActivity  {
 
             DialogRadioSelect dlg = new DialogRadioSelect();
             dlg.show(getFragmentManager(), "DialogRadioSelect");
+
+            return true;
+        }
+
+        if (id == R.id.action_add_folder_select) {
+
+            DialogFolderSelect dlg = new DialogFolderSelect();
+            dlg.show(getFragmentManager(), "DialogFolderSelect");
 
             return true;
         }
