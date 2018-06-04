@@ -65,7 +65,23 @@ public class FileItem {
                 mmr.setDataSource(m_strName);
                 byte[] artByteArray = mmr.getEmbeddedPicture();
                 if (artByteArray != null) {
-                    m_btm = BitmapFactory.decodeByteArray(artByteArray, 0, artByteArray.length);
+                    Bitmap b = BitmapFactory.decodeByteArray(artByteArray, 0, artByteArray.length);
+
+                    int width = b.getWidth();
+                    int height = b.getHeight();
+
+                    if (width > 512 || height > 512) {
+
+                        float aspectRatio = width / (float) height;
+                        int new_width = 512;
+                        int new_height = Math.round(new_width / aspectRatio);
+
+                        m_btm = Bitmap.createScaledBitmap(b, new_width, new_height, false);
+                    }
+                    else {
+                        m_btm = b;
+                    }
+
                     mmr.release();
                 }
             } catch (Exception ex) {
@@ -84,6 +100,17 @@ public class FileItem {
         for (int i = 0; i < str.length(); i++) {
             String ch = String.valueOf(str.charAt(i));
             if (strWin1252.indexOf(ch) >= 0) return true;
+        }
+        return false;
+    }
+
+    public boolean IsChar(String str) {
+        String strChar = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYXZ";
+        String strChar2 = "абвгдеёжзийклмнопрстуфхцчшщьыъэюяАБВГДЕЁЖЗИКЛМНОПРСТУФХЦЧШЩЬЫЪЭЮЯ";
+        for (int i = 0; i < str.length(); i++) {
+            String ch = String.valueOf(str.charAt(i));
+            if (strChar.indexOf(ch) >= 0) return true;
+            if (strChar2.indexOf(ch) >= 0) return true;
         }
         return false;
     }
@@ -107,6 +134,11 @@ public class FileItem {
 
                 if (IsWin1252(m_strTitleExecutor)) {
                     m_strTitleExecutor = new String(m_strTitleExecutor.getBytes("Windows-1252"/*"ISO-8859-1"*/), "Windows-1251");
+                }
+
+                if (!IsChar(m_strTitleExecutor)) {
+                    m_strTitleTrack = "";
+                    m_strTitleExecutor = "";
                 }
 
                 mmr.release();

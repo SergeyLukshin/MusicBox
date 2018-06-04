@@ -10,9 +10,11 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.os.Bundle;
+import android.support.design.widget.BaseTransientBottomBar;
 import android.util.DisplayMetrics;
 import android.view.View;
 import android.widget.RemoteViews;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.Comparator;
@@ -568,7 +570,7 @@ public class Widget extends AppWidgetProvider {
 
                         // тольки для вывода полной информации и для папок
                         remoteViews.setViewVisibility(R.id.llTitle, View.VISIBLE);
-                        if (!bNoHideConfig /*m_setNoHideConfig.containsKey(Integer.valueOf(widgetID)) || m_setNoHideConfig.get(Integer.valueOf(widgetID)) == Boolean.FALSE*/)
+                        if (!bNoHideConfig)
                             remoteViews.setViewVisibility(R.id.llBtn, View.GONE);
                         else
                             remoteViews.setViewVisibility(R.id.llBtn, View.VISIBLE);

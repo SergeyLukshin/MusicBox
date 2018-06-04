@@ -96,7 +96,11 @@ public class MainActivity extends AppCompatActivity  {
         switch (requestCode) {
             case NUMBER_OF_REQUEST: {
                 if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-                    Toast.makeText(MainActivity.this, "Доступ к памяти разрешен.", Toast.LENGTH_SHORT).show();
+                    //Toast.makeText(MainActivity.this, "Доступ к памяти разрешен.", Toast.LENGTH_SHORT).show();
+                    if (miAdapter.getCount() == 0) {
+                        DialogFolderSelect dlg = new DialogFolderSelect();
+                        dlg.show(getFragmentManager(), "DialogFolderSelect");
+                    }
                 } else {
                     Toast.makeText(MainActivity.this, "Доступ к памяти запрещен.", Toast.LENGTH_SHORT).show();
                 }
@@ -112,6 +116,7 @@ public class MainActivity extends AppCompatActivity  {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
+        boolean bAccess = false;
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
             int canRead = ContextCompat.checkSelfPermission(this, Manifest.permission.READ_EXTERNAL_STORAGE);
             int canWrite = ContextCompat.checkSelfPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE);
@@ -133,6 +138,7 @@ public class MainActivity extends AppCompatActivity  {
                     //просим разрешение
                 //}
             } else {
+                bAccess = true;
                 //ваш код
             }
         }
@@ -234,7 +240,7 @@ public class MainActivity extends AppCompatActivity  {
         IntentFilter intFilt = new IntentFilter(Const.FORCE_WIDGET_UPDATE);
         registerReceiver(br, intFilt);
 
-        if (miAdapter.getCount() == 0) {
+        if (bAccess && miAdapter.getCount() == 0) {
             DialogFolderSelect dlg = new DialogFolderSelect();
             dlg.show(getFragmentManager(), "DialogFolderSelect");
         }

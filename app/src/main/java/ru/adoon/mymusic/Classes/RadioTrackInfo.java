@@ -111,7 +111,24 @@ public class RadioTrackInfo {
                             connectionBitmap.setDoInput(true);
                             connectionBitmap.connect();
                             InputStream input = connectionBitmap.getInputStream();
-                            m_btm = BitmapFactory.decodeStream(input);
+
+                            Bitmap b = BitmapFactory.decodeStream(input);
+
+                            int width = b.getWidth();
+                            int height = b.getHeight();
+
+                            if (width > 512 || height > 512) {
+
+                                float aspectRatio = width / (float) height;
+                                int new_width = 512;
+                                int new_height = Math.round(new_width / aspectRatio);
+
+                                m_btm = Bitmap.createScaledBitmap(b, new_width, new_height, false);
+                            }
+                            else {
+                                m_btm = b;
+                            }
+
                         } catch (JSONException e) {
                             e.printStackTrace();
                         }

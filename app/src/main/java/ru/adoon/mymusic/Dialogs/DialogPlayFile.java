@@ -102,12 +102,12 @@ public class DialogPlayFile extends DialogFragment implements SeekBar.OnSeekBarC
                 FileItem fi = mi.files.get(file_index);
                 if (!fi.m_bReadTitle) {
                     fi.GetFileTitleDescript();
-                    Pair<String, String> obj;
-                    if (!fi.m_strTitleExecutor.equalsIgnoreCase("")) {
-                        obj = new Pair<String, String>(fi.m_strTitleExecutor, fi.m_strTitleTrack);
-                    } else {
-                        obj = new Pair<String, String>(fi.m_strShortName, "");
-                    }
+                    Pair<String, Pair<String, String> > obj;
+                    //if (!fi.m_strTitleExecutor.equalsIgnoreCase("")) {
+                        obj = new Pair<String, Pair<String, String> >(fi.m_strShortName, new Pair<String, String>(fi.m_strTitleExecutor, fi.m_strTitleTrack));
+                    //} else {
+                    //    obj = new Pair<String, Pair<String, String> >(fi.m_strShortName, "");
+                    //}
                     miAdapter.objects.set(file_index, obj);
                 }
             }
@@ -230,14 +230,14 @@ public class DialogPlayFile extends DialogFragment implements SeekBar.OnSeekBarC
 
         miAdapter = new PlayFileAdapter(adb.getContext());
         miAdapter.id = mi.id;
-        miAdapter.objects = new ArrayList<Pair<String, String>>();
+        miAdapter.objects = new ArrayList<Pair<String, Pair<String, String>>>();
         for (int i = 0; i < mi.files.size(); i++) {
             //mi.GetFileTitleDescript(i);
             FileItem fi = mi.files.get(i);
-            if (fi.m_strTitleExecutor != "")
-                miAdapter.objects.add(new Pair<String, String>(fi.m_strTitleExecutor, fi.m_strTitleTrack));
-            else
-                miAdapter.objects.add(new Pair<String, String>(fi.m_strShortName, ""));
+            //if (fi.m_strTitleExecutor != "")
+            //    miAdapter.objects.add(new Pair<String, String>(fi.m_strTitleExecutor, fi.m_strTitleTrack));
+            //else
+                miAdapter.objects.add(new Pair<String, Pair<String,String>>(fi.m_strShortName, new Pair<String, String>(fi.m_strTitleExecutor, fi.m_strTitleTrack)));
         }
 
         lvData = (ListView) view.findViewById(R.id.lvFiles);
@@ -350,13 +350,13 @@ public class DialogPlayFile extends DialogFragment implements SeekBar.OnSeekBarC
 
                 if (mi != null && MediaService.musicBox.play_sub_item_pos >= 0 && MediaService.musicBox.play_sub_item_pos < mi.files.size()) {
                     FileItem fi = mi.files.get(MediaService.musicBox.play_sub_item_pos);
-                    Pair<String, String> obj;
-                    if (!fi.m_strTitleExecutor.equalsIgnoreCase("")) {
-                        obj = new Pair<String, String>(fi.m_strTitleExecutor, fi.m_strTitleTrack);
-                    }
-                    else {
-                        obj = new Pair<String, String>(fi.m_strShortName, "");
-                    }
+                    Pair<String, Pair<String, String>> obj;
+                    //if (!fi.m_strTitleExecutor.equalsIgnoreCase("")) {
+                    //    obj = new Pair<String, String>(fi.m_strTitleExecutor, fi.m_strTitleTrack);
+                    //}
+                    //else {
+                        obj = new Pair<String, Pair<String, String>>(fi.m_strShortName, new Pair<String, String>(fi.m_strTitleExecutor, fi.m_strTitleTrack));
+                    //}
                     miAdapter.objects.set(MediaService.musicBox.play_sub_item_pos, obj);
                 }
 

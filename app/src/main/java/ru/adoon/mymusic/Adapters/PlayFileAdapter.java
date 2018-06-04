@@ -21,7 +21,7 @@ import ru.adoon.mymusic.R;
 public class PlayFileAdapter extends BaseAdapter implements View.OnClickListener {
     Context ctx;
     LayoutInflater lInflater;
-    public ArrayList<Pair<String, String> > objects = null;
+    public ArrayList<Pair<String, Pair<String, String> > > objects = null;
     public int id;
 
     //HashSet<String> selectedItems = null;
@@ -64,7 +64,8 @@ public class PlayFileAdapter extends BaseAdapter implements View.OnClickListener
         }
 
         String strFileName = objects.get(position).first;
-        String strDescript = objects.get(position).second;
+        String strTitle = objects.get(position).second.first;
+        String strDescript = objects.get(position).second.second;
 
         // заполняем View в пункте списка данными из товаров: наименование, цена
         // и картинка
@@ -72,13 +73,28 @@ public class PlayFileAdapter extends BaseAdapter implements View.OnClickListener
         TextView tv2 = ((TextView) view.findViewById(R.id.tvDescript));
         ImageView iv = ((ImageView) view.findViewById(R.id.ivImage));
 
-        if (position != MediaService.musicBox.play_sub_item_pos || id != MediaService.musicBox.play_item_id) iv.setImageResource(R.drawable.clear);
-        else iv.setImageResource(R.drawable.file_play);
+        if (position != MediaService.musicBox.play_sub_item_pos || id != MediaService.musicBox.play_item_id)
+        {
+            iv.setImageResource(R.drawable.clear);
 
-        tv.setText(strFileName);
-        tv2.setText(strDescript);
-        if (strDescript.equalsIgnoreCase("")) tv2.setVisibility(View.GONE);
-        else  tv2.setVisibility(View.VISIBLE);
+            tv.setText(strFileName);
+            tv2.setVisibility(View.GONE);
+        }
+        else
+        {
+            iv.setImageResource(R.drawable.file_play);
+
+            if (!strTitle.equalsIgnoreCase("")) {
+                tv.setText(strTitle);
+                tv2.setText(strDescript);
+                if (strDescript.equalsIgnoreCase("")) tv2.setVisibility(View.GONE);
+                else tv2.setVisibility(View.VISIBLE);
+            }
+            else {
+                tv.setText(strFileName);
+                tv2.setVisibility(View.GONE);
+            }
+        }
 
         //tv.setOnClickListener(this);
         tv.setTag(position);
