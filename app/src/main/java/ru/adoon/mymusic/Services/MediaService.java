@@ -860,6 +860,11 @@ public class MediaService extends Service implements MediaPlayer.OnPreparedListe
                         return;
                     }
                 }
+                if (mi.type == Const.TYPE_RADIO) {
+                    mi.state = Const.STATE_LOAD;
+                    OnStartMusic(mi);
+                    return;
+                }
             }
         }
         musicBox.StopAll(false);

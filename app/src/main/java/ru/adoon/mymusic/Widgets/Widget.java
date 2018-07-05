@@ -70,6 +70,9 @@ public class Widget extends AppWidgetProvider {
             editor.remove(ConfigActivity.WIDGET_PAUSE + widgetID);
             editor.remove(ConfigActivity.WIDGET_SHOW_FILE_NAME + widgetID);
             editor.remove(ConfigActivity.WIDGET_SHOW_ICON + widgetID);
+            editor.remove(ConfigActivity.WIDGET_THEME + widgetID);
+            editor.remove(ConfigActivity.WIDGET_TRANSPARENCY + widgetID);
+            editor.remove(ConfigActivity.WIDGET_BORDER + widgetID);
             editor.remove(ConfigActivity.WIDGET_ITEMS + widgetID);
         }
         editor.commit();
@@ -194,6 +197,91 @@ public class Widget extends AppWidgetProvider {
             int valShowNext = sp.getInt(ConfigActivity.WIDGET_NEXT + widgetID, 1);
             int valShowPause = sp.getInt(ConfigActivity.WIDGET_PAUSE + widgetID, 1);
             int valShowIcon = sp.getInt(ConfigActivity.WIDGET_SHOW_ICON + widgetID, 1);
+
+            int valTheme = sp.getInt(ConfigActivity.WIDGET_THEME + widgetID, 0);
+            int valTransparency = sp.getInt(ConfigActivity.WIDGET_TRANSPARENCY + widgetID, 50);
+            int valBorder = sp.getInt(ConfigActivity.WIDGET_BORDER + widgetID, 0);
+
+            if (valTheme == 0) // black
+            {
+                if (valTransparency == 0) {
+                    if (valBorder == 0)
+                        remoteViews.setInt(R.id.ll, "setBackgroundResource", R.xml.roundcorner_black_0);
+                    else
+                        remoteViews.setInt(R.id.ll, "setBackgroundResource", R.xml.roundcorner_black_0_border);
+                }
+                if (valTransparency == 25) {
+                    if (valBorder == 0)
+                        remoteViews.setInt(R.id.ll, "setBackgroundResource", R.xml.roundcorner_black_25);
+                    else
+                        remoteViews.setInt(R.id.ll, "setBackgroundResource", R.xml.roundcorner_black_25_border);
+                }
+                if (valTransparency == 50) {
+                    if (valBorder == 0)
+                        remoteViews.setInt(R.id.ll, "setBackgroundResource", R.xml.roundcorner_black_50);
+                    else
+                        remoteViews.setInt(R.id.ll, "setBackgroundResource", R.xml.roundcorner_black_50_border);
+                }
+                if (valTransparency == 75) {
+                    if (valBorder == 0)
+                        remoteViews.setInt(R.id.ll, "setBackgroundResource", R.xml.roundcorner_black_75);
+                    else
+                        remoteViews.setInt(R.id.ll, "setBackgroundResource", R.xml.roundcorner_black_75_border);
+                }
+                if (valTransparency == 100) {
+                    remoteViews.setInt(R.id.ll, "setBackgroundResource", R.xml.roundcorner_black_100);
+                }
+
+                remoteViews.setTextColor(R.id.tvTitle, context.getResources().getColor(R.color.colorWhite));
+                remoteViews.setTextColor(R.id.tvMainName, context.getResources().getColor(R.color.colorWhite));
+                remoteViews.setTextColor(R.id.tvTitleSmall, context.getResources().getColor(R.color.colorWhite));
+
+                remoteViews.setTextColor(R.id.tvMusic1, context.getResources().getColor(R.color.colorWhite));
+                remoteViews.setTextColor(R.id.tvMusic2, context.getResources().getColor(R.color.colorWhite));
+                remoteViews.setTextColor(R.id.tvMusic3, context.getResources().getColor(R.color.colorWhite));
+                remoteViews.setTextColor(R.id.tvMusic4, context.getResources().getColor(R.color.colorWhite));
+                remoteViews.setTextColor(R.id.tvMusic5, context.getResources().getColor(R.color.colorWhite));
+            }
+            else {
+                if (valTransparency == 0) {
+                    if (valBorder == 0)
+                        remoteViews.setInt(R.id.ll, "setBackgroundResource", R.xml.roundcorner_white_0);
+                    else
+                        remoteViews.setInt(R.id.ll, "setBackgroundResource", R.xml.roundcorner_white_0_border);
+                }
+                if (valTransparency == 25) {
+                    if (valBorder == 0)
+                        remoteViews.setInt(R.id.ll, "setBackgroundResource", R.xml.roundcorner_white_25);
+                    else
+                        remoteViews.setInt(R.id.ll, "setBackgroundResource", R.xml.roundcorner_white_25_border);
+                }
+                if (valTransparency == 50) {
+                    if (valBorder == 0)
+                        remoteViews.setInt(R.id.ll, "setBackgroundResource", R.xml.roundcorner_white_50);
+                    else
+                        remoteViews.setInt(R.id.ll, "setBackgroundResource", R.xml.roundcorner_white_50_border);
+                }
+                if (valTransparency == 75) {
+                    if (valBorder == 0)
+                        remoteViews.setInt(R.id.ll, "setBackgroundResource", R.xml.roundcorner_white_75);
+                    else
+                        remoteViews.setInt(R.id.ll, "setBackgroundResource", R.xml.roundcorner_white_75_border);
+                }
+                if (valTransparency == 100) {
+                    remoteViews.setInt(R.id.ll, "setBackgroundResource", R.xml.roundcorner_white_100);
+                }
+
+                remoteViews.setTextColor(R.id.tvTitle, context.getResources().getColor(R.color.colorBlack));
+                remoteViews.setTextColor(R.id.tvMainName, context.getResources().getColor(R.color.colorBlack));
+                remoteViews.setTextColor(R.id.tvTitleSmall, context.getResources().getColor(R.color.colorBlack));
+
+                remoteViews.setTextColor(R.id.tvMusic1, context.getResources().getColor(R.color.colorBlack));
+                remoteViews.setTextColor(R.id.tvMusic2, context.getResources().getColor(R.color.colorBlack));
+                remoteViews.setTextColor(R.id.tvMusic3, context.getResources().getColor(R.color.colorBlack));
+                remoteViews.setTextColor(R.id.tvMusic4, context.getResources().getColor(R.color.colorBlack));
+                remoteViews.setTextColor(R.id.tvMusic5, context.getResources().getColor(R.color.colorBlack));
+            }
+
 
             String strIDs = sp.getString(ConfigActivity.WIDGET_ITEMS + widgetID, null);
             //if (arrItemID == null) arrItemID = new HashSet<String>();
@@ -364,39 +452,6 @@ public class Widget extends AppWidgetProvider {
             for (int id : vecIDs) {
 
                 MusicItem p = MediaService.musicBox.getMusicItemByID(id);
-
-                /*if (valType == 0 && p.state != Const.STATE_STOP) {
-                    if (valShowFileName == 1) {
-                        remoteViews.setTextViewText(idTV.get(index), p.GetTitle() + " (" + p.GetShortDescript() + ")");
-
-                        if (p.name != p.GetTitle()) {
-                            remoteViews.setTextViewText(R.id.tvMainName, p.name);
-                            remoteViews.setViewVisibility(R.id.llImage, View.VISIBLE);
-                            Bitmap btm = p.GetBitmap();
-                            if (btm != null) {
-                                remoteViews.setImageViewBitmap(R.id.ivImage, btm);
-                            }
-                            else
-                                remoteViews.setImageViewResource(R.id.ivImage, R.drawable.ic_main);
-                        }
-                    }
-                    else
-                        remoteViews.setTextViewText(idTV.get(index), p.name);
-                }
-                else {
-                    remoteViews.setTextViewText(idTV.get(index), p.name);
-                }
-
-                if (valType == 1 && p.state != Const.STATE_STOP) {
-                    if (valShowFileName == 1) {
-                        remoteViews.setTextViewText(idTV.get(index), p.GetTitle() + " (" + p.GetShortDescript() + ")");
-                    }
-                    else
-                        remoteViews.setTextViewText(idTV.get(index), p.name);
-                }
-                else {
-                    remoteViews.setTextViewText(idTV.get(index), p.name);
-                }*/
 
                 if (p.type == Const.TYPE_FOLDER || p.type == Const.TYPE_PLAYLIST) {
                     Intent updateIntent = new Intent(context, ActivityPlayFile.class);
@@ -663,6 +718,8 @@ public class Widget extends AppWidgetProvider {
 
     public void onReceive(Context context, Intent intent) {
         super.onReceive(context, intent);
+
+
 
         if (intent.getAction().indexOf(Const.FORCE_WIDGET_UPDATE) == 0) {
             updateWidget(context, AppWidgetManager.getInstance(context));

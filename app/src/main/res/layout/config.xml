@@ -18,42 +18,51 @@
             android:padding="10dp">
 
             <TextView
-                android:id="@+id/textView5"
+                android:id="@+id/tvMainParameters"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="5dp"
                 android:layout_marginTop="10dp"
                 android:text="Основные параметры"
+                android:onClick="onClickMainParameters"
                 android:textSize="15sp" />
 
-            <CheckBox
-                android:id="@+id/cbBluetooth"
+            <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                xmlns:app="http://schemas.android.com/apk/res-auto"
+                android:id="@+id/llMainParameters"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="5dp"
-                android:layout_marginTop="5dp"
-                android:layout_marginLeft="35dp"
-                android:text='Иконка "Bluetooth"' />
+                android:orientation="vertical"
+                android:visibility="gone">
 
-            <CheckBox
-                android:id="@+id/cbSound"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="5dp"
-                android:layout_marginTop="5dp"
-                android:layout_marginLeft="35dp"
-                android:text='Иконка "Звук"' />
+                <CheckBox
+                    android:id="@+id/cbBluetooth"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="5dp"
+                    android:layout_marginLeft="35dp"
+                    android:layout_marginTop="5dp"
+                    android:text='Иконка "Bluetooth"' />
 
-            <CheckBox
-                android:id="@+id/cbEqualizer"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="5dp"
-                android:layout_marginTop="5dp"
-                android:layout_marginLeft="35dp"
-                android:text='Иконка "Эквалайзер"' />
+                <CheckBox
+                    android:id="@+id/cbSound"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="5dp"
+                    android:layout_marginLeft="35dp"
+                    android:layout_marginTop="5dp"
+                    android:text='Иконка "Звук"' />
 
-            <!--<RelativeLayout
+                <CheckBox
+                    android:id="@+id/cbEqualizer"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="5dp"
+                    android:layout_marginLeft="35dp"
+                    android:layout_marginTop="5dp"
+                    android:text='Иконка "Эквалайзер"' />
+
+                <!--<RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal">
@@ -75,59 +84,116 @@
                     android:layout_toRightOf="@+id/tvType" />
             </RelativeLayout>-->
 
-            <CheckBox
-                android:id="@+id/cbFullMode"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="5dp"
-                android:layout_marginTop="5dp"
-                android:text='Расширенный режим при воспроизведении' />
+                <CheckBox
+                    android:id="@+id/cbFullMode"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="5dp"
+                    android:layout_marginTop="5dp"
+                    android:text='Расширенный режим при воспроизведении' />
 
-            <CheckBox
-                android:id="@+id/cbShowPrev"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="35dp"
-                android:layout_marginBottom="5dp"
-                android:layout_marginTop="5dp"
-                android:text='Иконка "Предыдущий"' />
+                <CheckBox
+                    android:id="@+id/cbShowPrev"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="5dp"
+                    android:layout_marginLeft="35dp"
+                    android:layout_marginTop="5dp"
+                    android:text='Иконка "Предыдущий"' />
 
-            <CheckBox
-                android:id="@+id/cbShowNext"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="35dp"
-                android:layout_marginBottom="5dp"
-                android:layout_marginTop="5dp"
-                android:text='Иконка "Следующий"' />
+                <CheckBox
+                    android:id="@+id/cbShowNext"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="5dp"
+                    android:layout_marginLeft="35dp"
+                    android:layout_marginTop="5dp"
+                    android:text='Иконка "Следующий"' />
 
-            <CheckBox
-                android:id="@+id/cbShowPause"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="35dp"
-                android:layout_marginBottom="5dp"
-                android:layout_marginTop="5dp"
-                android:text='Иконка "Пауза"' />
+                <CheckBox
+                    android:id="@+id/cbShowPause"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="5dp"
+                    android:layout_marginLeft="35dp"
+                    android:layout_marginTop="5dp"
+                    android:text='Иконка "Пауза"' />
 
-            <CheckBox
-                android:id="@+id/cbShowFileName"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="5dp"
-                android:layout_marginTop="5dp"
-                android:text='Показывать полную информацию о треках' />
+                <CheckBox
+                    android:id="@+id/cbShowFileName"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="5dp"
+                    android:layout_marginTop="5dp"
+                    android:text='Показывать полную информацию о треках' />
 
-            <CheckBox
-                android:id="@+id/cbShowIcon"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="15dp"
-                android:layout_marginTop="5dp"
-                android:text='Отображать иконки медиа-элементов' />
+                <CheckBox
+                    android:id="@+id/cbShowIcon"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="15dp"
+                    android:layout_marginTop="5dp"
+                    android:text='Отображать иконки медиа-элементов' />
+
+            </LinearLayout>
 
             <TextView
-                android:id="@+id/textView4"
+                android:id="@+id/tvShapeParameters"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="5dp"
+                android:layout_marginTop="15dp"
+                android:text="Параметры отображения"
+                android:onClick="onClickShapeParameters"
+                android:textSize="15sp" />
+
+            <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                xmlns:app="http://schemas.android.com/apk/res-auto"
+                android:id="@+id/llShapeParameters"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:visibility="gone">
+
+                <CheckBox
+                    android:id="@+id/cbTheme"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="5dp"
+                    android:layout_marginTop="5dp"
+                    android:text='Светлый фон' />
+
+                <CheckBox
+                    android:id="@+id/cbBorder"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="5dp"
+                    android:layout_marginTop="5dp"
+                    android:text='Рамка вокруг виджета' />
+
+                <TextView
+                    android:id="@+id/textView7"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="5dp"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginLeft="8dp"
+                    android:text="Прозрачность"
+                    android:textColor="@color/colorBlack"
+                    android:textSize="15sp" />
+
+                <SeekBar
+                    android:id="@+id/pbTransparency"
+                    style="@style/Widget.AppCompat.SeekBar.Discrete"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="15dp"
+                    android:max="4"
+                    android:progress="2" />
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/tvElementParameters"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="5dp"

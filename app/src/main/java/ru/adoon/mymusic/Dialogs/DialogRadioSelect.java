@@ -79,6 +79,7 @@ public class DialogRadioSelect extends DialogFragment implements View.OnClickLis
                     if (mStop) return null;
                     // http://101.ru/api/channel/getServers/200/channel/MP3/?dataFormat=json
                     // http://101.ru/foot-radio-search/search/moscow
+                    // http://101.ru/api/channel/getServers/723958/personal/?dataFormat=json
                     URL url = new URL("http://101.ru/api/channel/getServers/" + String.valueOf(i) + "/channel/MP3/128/?dataFormat=json");
                     HttpURLConnection urlConnection = (HttpURLConnection) url.openConnection();
                     urlConnection.setRequestMethod("GET");

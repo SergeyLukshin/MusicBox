@@ -10,13 +10,13 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
+import android.widget.LinearLayout;
 import android.widget.ListAdapter;
 import android.widget.ListView;
+import android.widget.ProgressBar;
 import android.widget.ScrollView;
-import android.widget.Spinner;
 
 import java.util.ArrayList;
 
@@ -45,12 +45,17 @@ public class ConfigActivity extends AppCompatActivity {
     public final static String WIDGET_SHOW_FILE_NAME = "show_file_name";
     public final static String WIDGET_SHOW_ICON = "show_icon";
 
+    public final static String WIDGET_THEME = "theme";
+    public final static String WIDGET_TRANSPARENCY = "transparency";
+    public final static String WIDGET_BORDER = "border";
+
     ListView lvData;
     ConfigAdapter miAdapter;
     int select_pos = -1;
 
     CheckBox cbShowFullInfo;
-    CheckBox cbShowExMode, cbShowNext, cbShowPrev, cbShowPause, cbShowIcon;
+    CheckBox cbShowExMode, cbShowNext, cbShowPrev, cbShowPause, cbShowIcon, cbTheme, cbBorder;
+    ProgressBar pbTransparency;
 
     public static void setListViewHeightBasedOnChildren(ListView listView) {
         ListAdapter listAdapter = listView.getAdapter();
@@ -196,6 +201,20 @@ public class ConfigActivity extends AppCompatActivity {
         if (val == 1) cbShowIcon.setChecked(true);
         else cbShowIcon.setChecked(false);
 
+        val = sp.getInt(WIDGET_THEME + widgetID, 0);
+        cbTheme = (CheckBox)findViewById(R.id.cbTheme);
+        if (val == 1) cbTheme.setChecked(true);
+        else cbTheme.setChecked(false);
+
+        val = sp.getInt(WIDGET_BORDER + widgetID, 0);
+        cbBorder = (CheckBox)findViewById(R.id.cbBorder);
+        if (val == 1) cbBorder.setChecked(true);
+        else cbBorder.setChecked(false);
+
+        val = sp.getInt(WIDGET_TRANSPARENCY + widgetID, 50);
+        pbTransparency = (ProgressBar)findViewById(R.id.pbTransparency) ;
+        pbTransparency.setProgress(pbTransparency.getMax() - val / 25);
+
         /*ArrayAdapter adapter = ArrayAdapter.createFromResource(this,
                 R.array.widget_type_list, R.layout.spinner_item);
 
@@ -248,6 +267,22 @@ public class ConfigActivity extends AppCompatActivity {
         myHandler.sendMessageDelayed(m, 50);
     }
 
+    public void onClickMainParameters(View view) {
+        LinearLayout ll = (LinearLayout)findViewById(R.id.llMainParameters);
+        int visible = ll.getVisibility();
+        if (visible == View.GONE) visible = View.VISIBLE;
+        else visible = View.GONE;
+        ll.setVisibility(visible);
+    }
+
+    public void onClickShapeParameters(View view) {
+        LinearLayout ll = (LinearLayout)findViewById(R.id.llShapeParameters);
+        int visible = ll.getVisibility();
+        if (visible == View.GONE) visible = View.VISIBLE;
+        else visible = View.GONE;
+        ll.setVisibility(visible);
+    }
+
     public void onClick(View view) {
 
         // Записываем значения с экрана в Preferences
@@ -279,6 +314,15 @@ public class ConfigActivity extends AppCompatActivity {
 
         cb = (CheckBox)findViewById(R.id.cbShowIcon);
         editor.putInt(WIDGET_SHOW_ICON + widgetID, cb.isChecked() ? 1 : 0);
+
+        cb = (CheckBox)findViewById(R.id.cbTheme);
+        editor.putInt(WIDGET_THEME + widgetID, cb.isChecked() ? 1 : 0);
+
+        cb = (CheckBox)findViewById(R.id.cbBorder);
+        editor.putInt(WIDGET_BORDER + widgetID, cb.isChecked() ? 1 : 0);
+
+        ProgressBar pb = (ProgressBar)findViewById(R.id.pbTransparency);
+        editor.putInt(WIDGET_TRANSPARENCY + widgetID, (pbTransparency.getMax() - pb.getProgress()) * 25);
 
         //Spinner spType = (Spinner) findViewById(R.id.spType);
         //editor.putInt(WIDGET_TYPE + widgetID, spType.getSelectedItemPosition());
