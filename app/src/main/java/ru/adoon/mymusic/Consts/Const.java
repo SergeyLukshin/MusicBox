@@ -21,7 +21,7 @@ public class Const {
     final public static String ACTION_BLUETOOTH = "ru.adoon.mymusic.bluetooth";
     final public static String ACTION_EQUALIZER = "ru.adoon.mymusic.equalizer";
 
-    final public static String FORCE_WIDGET_UPDATE = "android.appwidget.action.APPWIDGET_UPDATE";//"ru.adoon.mymusic.widget_update";
+    final public static String FORCE_WIDGET_UPDATE = "ru.adoon.mymusic.widget_update";
     final public static String FORCE_POS_UPDATE = "ru.adoon.mymusic.pos_update";
 
     final public static int DIALOG_RADIO = 1;
